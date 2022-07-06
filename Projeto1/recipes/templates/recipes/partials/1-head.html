@@ -72,6 +72,8 @@
             font-size: 1.6rem;
             font-family: var(--font-primary);
             background: var(--color-gray-1);
+            position: relative;
+
         }
 
         h1,
@@ -105,58 +107,40 @@
             margin: 0 auto;
         }
 
+
         .main-logo-icon {
             margin-right: 2rem;
         }
 
-
-        .search-container {
-            background: var(--color-gray-1);
-        }
+        /* +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-*/
 
         .search-form {
-            border: .2rem solid var(--color-primary-dark);
-            max-width: 64rem;
-            margin: 0 auto;
-            border-radius: .4rem;
+            border: 2px #000 solid;
+            max-width: 25rem;
             position: relative;
-            transition: all 300ms ease-in-out;
-            width: 30%;
+            margin: 0 auto;
+            border-radius: 13px;
+            background: white;
+
+        }
+
+        .search-input {
+            width: 90%;
+            height: 37px;
+            border-radius: 13px;
+            border: white;
         }
 
         .search-input,
         .search-button {
+            margin: 0 auto;
+            position: center;
             border: none;
-            background: none;
-            outline: none;
-            padding: 1rem;
-            transition: all 300ms ease-in-out;
         }
 
-        .search-input {
-            width: 95%;
-            padding-right: 1rem;
-            background-color: whitesmoke;
-        }
-
-        .search-button {
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
-
-        .search-button:focus {
-            outline: 1px solid var(--color-primary);
-            background: rgba(0, 0, 0, .05)
-        }
-
-        .search-form:focus-within {
-            border-color: var(--color-primary);
-            background: var(--color-white);
-        }
-
-        .search-form:focus-within .search-button {
-            color: var(--color-primary);
+        .search-button:focus-within {
+            border: #000;
+            color: var(--color-debug-dark);
         }
     </style>
 </head>
