@@ -1,6 +1,20 @@
-<main class="main-content-container">
-    <div class="main-content main-content-list container">
-        <div class="temp"></div>
+<!-- Display da home -->
 
-    </div>
+<main>
+    <div class="main-content-container">
+        <div class="main-content main-content-list container">
+            <div class="recipe recipe-list-item">
+                <div class="recipe-cover">
+                    <img src="https://receitinhas.com.br/wp-content/uploads/2017/02/Hamburguer-com-cheddar-e-r%C3%BAcula.jpg"
+                        alt="Display-1">
+                    <class class="recipe-content-title">
+                        <class class="recipe title">
+                            <h2>Titulo receita</h2>
+                        </class>
+                    </class>
+                </div>
+
+            </div>
+        </div>
 </main>
+</div>
