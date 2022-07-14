@@ -56,7 +56,7 @@
                 </div>
 
                 <footer class="recipe-footer">
-                    <a class="recipe-read-more button button-dark button-full-width" href="recipe/3">
+                    <a class="recipe-read-more button button-dark button-full-width" href="recipe/1">
                         <i class="fas fa-eye"></i>
                         <span>ver mais...</span>
                     </a>
@@ -115,7 +115,7 @@
                 </div>
 
                 <footer class="recipe-footer">
-                    <a class="recipe-read-more button button-dark button-full-width" href="facebook.com">
+                    <a class="recipe-read-more button button-dark button-full-width" href="/2">
                         <i class="fas fa-eye"></i>
                         <span>ver mais...</span>
                     </a>
