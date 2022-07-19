@@ -53,7 +53,7 @@
     
     {% if is_detail_page is True %}
         <div class="preparation-steps">
-            {{recipes.preparation_steps}}
+            {{recipe.preparation_steps|linebreaksbr }}
         </div>
     
     {% endif %}

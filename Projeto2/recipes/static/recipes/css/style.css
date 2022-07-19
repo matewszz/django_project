@@ -207,6 +207,10 @@
             filter: brightness(2);
         }
 
+        .preparation-steps{
+            padding: var(--spacing-gutter-medium);
+        }
+
         .main-content-detail .recipe-list-item{
             max-width: 74rem;
             margin: 0 auto;
