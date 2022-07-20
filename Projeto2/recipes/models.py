@@ -4,8 +4,8 @@ from django.db import models
 class Recipe(models.Model):
     title = models.CharField(max_length=65) # max_length determinar o max de caracter, tipo um varchar Sql #
     description = models.CharField(max_length=165) # models.CharField serve para criar interações que o usuario digite algo, tipo um blog #
-    slug = models.SlugField() #O slug serve para realizar uma busca de algo, por exemplo um inti que realiza um busca e retorna algo #
-    preparation_time = models.IntegerField() # Para o úsuario digitar um número inteiro #
+    slug = models.SlugField() #O slug serve para realizar uma busca de algo, por exemplo um int que realiza um busca e retorna algo #
+    preparation_time = models.IntegerField() # Para o usuário digitar um número inteiro #
     preparation_time_unit = models.CharField(max_length=65)
     serving = models.IntegerField()
     preparation_unit = models.CharField(max_length=65)
@@ -16,6 +16,3 @@ class Recipe(models.Model):
     is_published = models.BooleanField(default=False)
     cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d') # Serve para realizar o upload de uma imagem e o "upload_to='' é para informa para onde vai ser encaminhado a imagem quando o cliente upar + ano/mês/dia"
     
-
-
-
