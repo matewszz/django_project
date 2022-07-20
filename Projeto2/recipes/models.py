@@ -1,5 +1,10 @@
 from distutils.command.upload import upload
+from unicodedata import category
 from django.db import models
+
+class Category(models.Model):
+    name = models.CharField(max_length=65)
+    
 
 class Recipe(models.Model):
     title = models.CharField(max_length=65) # max_length determinar o max de caracter, tipo um varchar Sql #
@@ -14,5 +19,7 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) # DateTimeField realiza a documentação da data quando houver criado algo #
     update_at = models.DateField(auto_now=True)
     is_published = models.BooleanField(default=False)
-    cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d') # Serve para realizar o upload de uma imagem e o "upload_to='' é para informa para onde vai ser encaminhado a imagem quando o cliente upar + ano/mês/dia"
-    
+    cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d') # Serve para realizar o upload de uma imagem e o "upload_to='' é para informa para onde vai ser encaminhado a imagem quando o cliente upar + ano/mês/dia" #
+    Category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True
+    )
