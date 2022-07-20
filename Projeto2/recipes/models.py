@@ -1,6 +1,8 @@
 from distutils.command.upload import upload
 from unicodedata import category
 from django.db import models
+from django.contrib.auth.models import User
+
 
 class Category(models.Model):
     name = models.CharField(max_length=65)
@@ -23,3 +25,8 @@ class Recipe(models.Model):
     Category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True
     )
+    author = models.ForeignKey(
+            User, on_delete=models.SET_NULL, null=True
+    )
+
+    
