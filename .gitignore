@@ -724,3 +724,4 @@ Projeto1/venv/Scripts/Activate.ps1
 Projeto1/venv/Scripts/pip.exe
 Projeto1/venv/Scripts/pip3.8.exe
 Projeto1/venv/Scripts/pip3.exe
+*.pyc
