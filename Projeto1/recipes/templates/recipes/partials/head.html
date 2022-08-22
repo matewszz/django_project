@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/3c2beefd01.js" crossorigin="anonymous"></script>
     <title>Aroma</title>
     <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
 </head>
@@ -35,9 +36,53 @@
          color: black;
      }
 
-     header img{
-         padding-top: 12px;
-     }
+    .botao-busca{
+        border: .2rem solid black;
+        max-width: 44rem;
+        margin: 0 auto;
+        border-radius: .4rem;
+        position: relative;
+        transition: all 300ms ease-in-out;
+        
 
+    }
+
+    .busca-input,
+    .botao-home{
+        border: none;
+        background: none;
+        outline: none;
+        padding: 1rem;
+        transition: all 300ms ease-in-out;
+    }
+
+    .botao-home{
+        position: absolute;
+        top: 0;
+        right: 0;
+
+    }
+
+    .busca-input{
+        width: 100%;
+        padding-right: 3.5rem;
+    } 
+
+    .busca-input:focus{
+        border-radius: .4rem;
+        background: white;
+    
+    }
+
+    .botao-busca:focus-within .botao-home {
+        background-color: #593361;
+        color: wheat;
+        
+    }
+
+
+    .main-content-container{
+        padding-top: 2rem;
+    }
 
 </style>
