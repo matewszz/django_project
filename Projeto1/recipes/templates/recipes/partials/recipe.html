@@ -44,11 +44,22 @@
         </div>
     </div>
 
+
+    {% if is_detail_page is not True %}
     <footer class="recipe-footer">
         <a class="recipe-read-more button button-dark button-full-width" href="/recipes/3/">
             <i class="fas fa-eye"></i>
             <span>ver mais...</span>
         </a>
     </footer>
+    {% endif %}
 
+    {% if is_detail_page is True %}
+
+        <div class="preparation-steps">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum recusandae eveniet soluta dicta similique sapiente delectus incidunt molestias ut deserunt neque ipsam labore esse modi autem, eaque adipisci aspernatur iste? * Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum recusandae eveniet soluta dicta similique sapiente delectus incidunt molestias ut deserunt neque ipsam labore esse modi autem, eaque adipisci aspernatur iste? * Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum recusandae eveniet soluta dicta similique sapiente delectus incidunt molestias ut deserunt neque ipsam labore esse modi autem, eaque adipisci aspernatur iste? * Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum recusandae eveniet soluta dicta similique sapiente delectus incidunt molestias ut deserunt neque ipsam labore esse modi autem, eaque adipisci aspernatur iste? * Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum recusandae eveniet soluta dicta similique sapiente delectus incidunt molestias ut deserunt neque ipsam labore esse modi autem, eaque adipisci aspernatur iste? * Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum recusandae eveniet soluta dicta similique sapiente delectus incidunt molestias ut deserunt neque ipsam labore esse modi autem, eaque adipisci aspernatur iste? * Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum recusandae eveniet soluta dicta similique sapiente delectus incidunt molestias ut deserunt neque ipsam labore esse modi autem, eaque adipisci aspernatur iste? * </p>
+        </div>
+
+    {% endif %}
+    
 </div> 

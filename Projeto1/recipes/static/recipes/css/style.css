@@ -195,12 +195,14 @@ h6 {
     filter: brightness(2);
 }
 
-.main-content-detail .recipe-list-item {
+.main-content-detail  .recipe-list-item {
     max-width: 84rem;
-}
-.main-content-detail .recipe-list-item:hover {
-    box-shadow: none;
-}
+    margin: 0 auto;
+  }
+  .main-content-detail .recipe-list-item:hover {
+    transform: scale(1);
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+  }
 
 
 .main-footer {
@@ -220,4 +222,9 @@ h6 {
 
 .main-footer a:hover {
     filter: brightness(.8);
+}
+
+.preparation-steps p{
+    padding: 1rem;
+    padding-left: 2rem;
 }
