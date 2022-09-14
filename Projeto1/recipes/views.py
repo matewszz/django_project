@@ -1,10 +1,12 @@
 from django.shortcuts import render
+from recipes.models import Recipe
 
 
 def home(request):
+    recipes = Recipe.objects.all().order_by('-id')
     return render(request, 'recipes/pages/home.html',
                   context={
-                      'name': 'matos'
+                      'recipes': recipes,
                   })
 
 
