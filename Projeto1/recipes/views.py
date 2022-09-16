@@ -1,5 +1,7 @@
 from django.shortcuts import render
+
 from utils.recipes.factory import make_recipe
+
 from .models import Recipe
 
 
