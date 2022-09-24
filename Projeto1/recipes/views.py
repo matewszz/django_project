@@ -18,7 +18,6 @@ def category(request, category_id):
         category__id=category_id,
         is_published=True,
     ).order_by('-id')
-
     if not recipes:
         raise Http404('Not found :/')
 
