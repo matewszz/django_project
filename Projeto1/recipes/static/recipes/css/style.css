@@ -228,6 +228,10 @@ h6 {
     filter: brightness(.8);
 }
 
+footer{
+    padding-bottom: 0px;
+}
+
 .preparation-steps {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -237,3 +241,13 @@ h6 {
     text-indent: 5rem;
 }
 
+.erro{
+    text-align: center;
+}
+
+.erro img{
+    align-items: center;
+    height: 500px;
+    width: 500px;
+
+}
