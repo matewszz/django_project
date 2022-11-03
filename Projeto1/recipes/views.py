@@ -1,5 +1,5 @@
-from django.db.models import Q
-from django.http import Http404, HttpResponse #F401
+from django.db.models import Q  # Esse import serve para melhorar o search
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_list_or_404, get_object_or_404, render
 from recipes.models import Recipe
 from django.core.paginator import Paginator
@@ -12,7 +12,7 @@ def home(request):
     usuario_paginator = Paginator(recipes, 3)   # Variavel dos obj e a quantidade dessa variavel
     page_num = request.GET.get('page')          # verifica quais posts deve mostrar na página determinada
     page = usuario_paginator.get_page(page_num) # Django está se situando em qual página da paginação ele está
-    
+
     return render(request, 'recipes/pages/home.html', {'page': page})
 
 
