@@ -1,15 +1,18 @@
-from django.db.models import Q  # Esse import serve para melhorar o search
+from django.db.models import Q  # Esse import serve para melhorar o search com uma busca por algum atributo do arquivo
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_list_or_404, get_object_or_404, render
 from recipes.models import Recipe
 from django.core.paginator import Paginator
+import os
+
+PER_PAGE = os.environ.get('PER_PAGE', 6) # Variavel de produção, quando alterado o valor no .env é realizado a alteração por aqui 
 
 
 def home(request):
     recipes = Recipe.objects.filter(
         is_published=True,
     ).order_by('-id')
-    usuario_paginator = Paginator(recipes, 3)   # Variavel dos obj e a quantidade dessa variavel
+    usuario_paginator = Paginator(recipes, PER_PAGE)   # Variavel dos obj e a quantidade dessa variavel
     page_num = request.GET.get('page')          # verifica quais posts deve mostrar na página determinada
     page = usuario_paginator.get_page(page_num) # Django está se situando em qual página da paginação ele está
 
