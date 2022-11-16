@@ -5,13 +5,16 @@ from recipes.models import Recipe
 from django.core.paginator import Paginator
 import os
 
-PER_PAGE = os.environ.get('PER_PAGE', 6) # Variavel de produção, quando alterado o valor no .env é realizado a alteração por aqui 
+
+PER_PAGE = 3 # Variavel de produção, quando alterado o valor no .env é realizado a alteração por aqui 
 
 
 def home(request):
+
     recipes = Recipe.objects.filter(
         is_published=True,
     ).order_by('-id')
+    
     usuario_paginator = Paginator(recipes, PER_PAGE)   # Variavel dos obj e a quantidade dessa variavel
     page_num = request.GET.get('page')          # verifica quais posts deve mostrar na página determinada
     page = usuario_paginator.get_page(page_num) # Django está se situando em qual página da paginação ele está
@@ -40,7 +43,8 @@ def recipe(request, id):
     })
 
 
-def search(request):
+def search(request):    
+    
     search_term = request.GET.get('q', '').strip()
  
     if not search_term:
