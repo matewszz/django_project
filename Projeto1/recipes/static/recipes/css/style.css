@@ -59,6 +59,8 @@ h6 {
 }
 
 
+/************************************ Responsividade ************************************/
+
 @media (max-width: 600px) {
     .main-content-list {
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
@@ -73,6 +75,7 @@ h6 {
 
 }
 
+/************************************ Responsividade ************************************/
 
 
 .center{
@@ -314,6 +317,17 @@ footer{
     color: #2086c2;
 }
 
+  /************************************ FORMS ************************************/
+
+.form-content{
+    max-width: 64rem;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    
+}
+
+
+  /************************************ FORMS ************************************/
 
 
 /* Messages */
@@ -373,3 +387,4 @@ footer{
   }
   
   /* Generics */
+
