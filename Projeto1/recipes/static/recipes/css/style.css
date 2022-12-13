@@ -326,6 +326,33 @@ footer{
     
 }
 
+.form-content label .help-text{
+    display: block;
+    margin: .5rem 0;
+    font-size: 1.4rem;
+}
+
+.help-text{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.form-content input{
+    width: 100%;
+    padding: 1rem;
+    border-radius: .4rem;
+    border: 1px solid blueviolet;
+}
+
+.form-group{
+    margin: 1rem;
+}
+
+.form-group button{
+    padding: 1rem 2rem;
+    color: white;
+    background: #13141f;
+}
 
   /************************************ FORMS ************************************/
 
