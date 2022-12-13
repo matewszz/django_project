@@ -11,4 +11,12 @@ class RegisterForm(forms.ModelForm):
             'username',
             'email',
             'password',
+            
         ]
+
+        widgets = {     # Serve para sobrescrever o campo#
+            'password': forms.PasswordInput(attrs={ # esconde o imput da senha #
+                'placeholder': 'Digite sua senha, por favor!' # Texto que fica dentro do imput #
+            })   
+        }
+

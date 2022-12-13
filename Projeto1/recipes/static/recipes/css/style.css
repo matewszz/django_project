@@ -59,6 +59,8 @@ h6 {
 }
 
 
+/************************************ Responsividade ************************************/
+
 @media (max-width: 600px) {
     .main-content-list {
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
@@ -73,6 +75,7 @@ h6 {
 
 }
 
+/************************************ Responsividade ************************************/
 
 
 .center{
@@ -314,6 +317,44 @@ footer{
     color: #2086c2;
 }
 
+  /************************************ FORMS ************************************/
+
+.form-content{
+    max-width: 64rem;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    
+}
+
+.form-content label .help-text{
+    display: block;
+    margin: .5rem 0;
+    font-size: 1.4rem;
+}
+
+.help-text{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.form-content input{
+    width: 100%;
+    padding: 1rem;
+    border-radius: .4rem;
+    border: 1px solid blueviolet;
+}
+
+.form-group{
+    margin: 1rem;
+}
+
+.form-group button{
+    padding: 1rem 2rem;
+    color: white;
+    background: #13141f;
+}
+
+  /************************************ FORMS ************************************/
 
 
 /* Messages */
@@ -373,3 +414,4 @@ footer{
   }
   
   /* Generics */
+
