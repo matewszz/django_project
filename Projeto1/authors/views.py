@@ -4,6 +4,7 @@ from .forms import RegisterForm
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 
+
 # Create your views here.
 def register_view(request):
     register_form_data = request.session.get('register_form_data', None)
