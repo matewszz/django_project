@@ -9,14 +9,17 @@
 
   <div class="main-content container">
     <form action=" {% url 'authors:create' %} " method="POST">
-      {% csrf_token %} <! Comando serve para informa para o django que é seguro inputar os dados ->
- 
+      {% csrf_token %}  
+      {% comment %} Comando serve para informa para o django que é seguro inputar os dados
+      {% endcomment %}
+
       <div class="form-content form-content-grid">
-        {% for field in form %} <! Para campo em formulario ->
+        {% for field in form %} {% comment %} Para campo em formulario {% endcomment %}     
+         
           <div class="form-group">
             
             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              {{field}}  <! Campo para manter os campos ->
+              {{field}} {% comment %} Campo para manter os campos {% endcomment %} 
 
             {% if field.help_text %}
               <p class="help-text">{{ field.help_text }}</p>
