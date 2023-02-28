@@ -3,6 +3,13 @@ from django.contrib.auth.models import User
 
 
 class RegisterForm(forms.ModelForm):
+    Confirmar_Senha = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Favor, confirme a senha!'
+        })
+    )
+
     class Meta:
         model = User                     ##
         fields = [                       # campos que terá para o usuario imputar dados #
