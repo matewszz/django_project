@@ -2,7 +2,6 @@ from audioop import reverse
 from django.shortcuts import redirect, render
 from .forms import RegisterForm
 from django.http import Http404, HttpResponse
-from django.shortcuts import render
 
 
 # Create your views here.
@@ -23,4 +22,3 @@ def register_create(request):
     form = RegisterForm(POST)
 
     return redirect('authors:register')
-
