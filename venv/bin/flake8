@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/home/matos/Área de Trabalho/Git/django_project/Projeto1/venv/bin/python3" "$0" "$@"
+'''exec' "/home/mateus/Área de Trabalho/git/Recipe_Django/venv/bin/python3" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re
