@@ -48,7 +48,7 @@ class RegisterForm(forms.ModelForm):
             'one lowercase letter and one number. The length should be '
             'at least 8 characters.'
         ),
-        validators=[strong_password]
+        validators=[strong_password] # Para chamar uma função e usar para validar algo.
     )
     password2 = forms.CharField(
         required=True,
