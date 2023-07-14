@@ -1,5 +1,4 @@
 import re
-
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -30,11 +29,10 @@ def strong_password(password):  # validacao usando RE
 class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        add_placeholder(self.fields['username'], 'Your username')
         add_placeholder(self.fields['email'], 'Your e-mail')
         add_placeholder(self.fields['first_name'], 'Ex.: John')
         add_placeholder(self.fields['last_name'], 'Ex.: Doe')
-        add_attr(self.fields['username'], 'css', 'a-css-class')
+
     password = forms.CharField(
         required=True,
         widget=forms.PasswordInput(attrs={
@@ -62,57 +60,29 @@ class RegisterForm(forms.ModelForm):
         fields = [
             'first_name',
             'last_name',
-            'username',
             'email',
             'password',
         ]
-        # exclude = ['first_name']
+
         labels = {
-            'username': 'Username',
             'first_name': 'First name',
             'last_name': 'Last name',
             'email': 'E-mail',
             'password': 'Password',
         }
-        help_texts = {
-            'email': 'The e-mail must be valid.',
-        }
-        error_messages = {
-            'username': {
-                'required': 'This field must not be empty',
-            }
-        }
-        widgets = {
-            'first_name': forms.TextInput(attrs={
-                'placeholder': 'Type your username here',
-                'class': 'input text-input'
-            }),
-            'password': forms.PasswordInput(attrs={
-                'placeholder': 'Type your password here'
-            })
-        }
 
-    def clean_password(self):
-        data = self.cleaned_data.get('password')
-        if 'atenção' in data:
+    def clean_email(self): #Verificar se o email enviado no POST já existe na base de dados.
+        email = self.cleaned_data.get("email", '')
+        exists = User.objects.filter(email=email).exists()
+
+        if exists:
             raise ValidationError(
-                'Não digite %(pipoca)s no campo password',
-                code='invalid',
-                params={'pipoca': '"atenção"'}
+                'User e-mail is already in use', code='invalid',
             )
-        return data
+        
+        return email
 
-    def clean_first_name(self):
-        data = self.cleaned_data.get('first_name')
-        if 'John Doe' in data:
-            raise ValidationError(
-                'Não digite %(value)s no campo first name',
-                code='invalid',
-                params={'value': '"John Doe"'}
-            )
-        return data
-
-    def clean(self):
+    def clean(self): #Verificar se a senha é igual ao confirmar senha.
         cleaned_data = super().clean()
         password = cleaned_data.get('password')
         password2 = cleaned_data.get('password2')
@@ -123,36 +93,7 @@ class RegisterForm(forms.ModelForm):
             )
             raise ValidationError({
                 'password': password_confirmation_error,
-                'password2': [
-                    password_confirmation_error,
-                ],
+
             })
-from django import forms
-from django.contrib.auth.models import User
 
-
-class RegisterForm(forms.ModelForm):
-    Confirmar_Senha = forms.CharField(
-        required=True,
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Favor, confirme a senha!'
-        })
-    )
-
-    class Meta:
-        model = User                     ##
-        fields = [                       # campos que terá para o usuario imputar dados #
-            'first_name',                ##
-            'last_name',                 ##
-            'username',
-            'email',
-            'password',
-            
-        ]
-
-        widgets = {     # Serve para sobrescrever o campo#
-            'password': forms.PasswordInput(attrs={ # esconde o imput da senha #
-                'placeholder': 'Digite sua senha, por favor!' # Texto que fica dentro do imput #
-            })   
-        }
-
+# flake8: noqa
