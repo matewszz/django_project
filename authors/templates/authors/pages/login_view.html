@@ -4,15 +4,18 @@
 {% block content %}
   <div class="main-content center container">
     <h2>Login</h2>
+    {% if request.user.is_authenticated %}
+          You are logged in with
+      {{request.user.email}}
+    {% endif %}
   </div>
 
-  {% comment %} <form method="POST" action="{% url 'authors:login_view' %}></form> {% endcomment %}
+{% include 'recipes/partials/messages.html' %}
 
 <form method="POST" action="">
   {% include 'global/includes/template_forms.html' %}
 </form>
 
-  {% include 'recipes/partials/messages.html' %}
 
 
 {% endblock content %}

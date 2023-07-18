@@ -14,8 +14,8 @@ def register_view(request):
             user.username = form.cleaned_data.get("email")
             user.save()
             messages.success(request, 'Your user is created, please log in.')
-
-            return redirect('authors:register')
+            
+            return redirect('authors:login')
     else:
         form = RegisterForm()
 
