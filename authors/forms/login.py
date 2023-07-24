@@ -1,15 +1,18 @@
 from django import forms
+from utils.django_forms import add_placeholder
 
 
 class LoginForm(forms.Form):
-    email = forms.CharField(
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        add_placeholder(self.fields['password'], 'Type your password')
+
+    username = forms.CharField(
         widget=forms.TextInput(
-            attrs={'type': 'email', 'placeholder': 'Digite seu email'}
+            attrs={'type': 'email', 'placeholder': 'Type your email'}
         )
     )
 
     password = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={'placeholder': 'Digite sua senha'}
-        )
+        widget=forms.PasswordInput()
     )
