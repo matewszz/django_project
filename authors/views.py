@@ -2,10 +2,10 @@ from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, AuthorRecipeForm
 from django.contrib.auth import logout, login, authenticate # para realizar a autenticação, login e logout do usuario
 from django.contrib.auth.decorators import login_required # somente usuarios logados possa acessar a view
-
+from recipes.models import Recipe
 
 def register_view(request):
     if request.method == 'POST':
@@ -33,7 +33,6 @@ def login_view(request): #view para realizazr o login
     if request.POST:
 
         form = LoginForm(request.POST)
-        login_url = reverse('authors:login')
 
         if form.is_valid():
             # authenticated_user = authenticate(
@@ -53,7 +52,7 @@ def login_view(request): #view para realizazr o login
         else:
             messages.error(request, 'Invalid username or password')
 
-        return redirect(login_url)
+        return redirect('authors:dashboard')
 
     
     return render(request, 'authors/pages/login.html', {
@@ -65,3 +64,53 @@ def login_view(request): #view para realizazr o login
 def logout_view(request): #view para realizazr o logout
     logout(request)
     return redirect('authors:login')
+
+
+@login_required(login_url='authors:login')
+def dashboard(request):
+    recipes = Recipe.objects.filter(
+        is_published=False,
+        author=request.user
+    )
+
+    context = {
+        'recipes': recipes,
+    }
+
+    return render(request,'authors/pages/dashboard.html', context)
+
+
+@login_required(login_url='authors:login')
+def dashboard_recipe_edit(request, id):
+    recipe = Recipe.objects.get(
+        is_published=False,
+        author=request.user,
+        id=id,
+    )
+
+    form = AuthorRecipeForm( # esse tipo de form fica vinculado aos dados do model. então os dados aparecem para o user editar.
+        data=request.POST or None,
+        files=request.FILES or None, # deve sempre ter esse comando no form para indicar o tráfego de arquivos.
+        instance=recipe,
+
+
+    )
+
+    context = {
+        'recipes': recipe,
+        'form': form,
+    }
+
+    if form.is_valid():
+        recipe = form.save(commit=False)
+
+        recipe.author = request.user
+        recipe.preparation_steps_is_html = False
+        recipe.is_published = False
+
+        recipe.save()
+
+        messages.success(request, 'Sua receita foi salva com sucesso!')
+        return redirect(reverse('authors:dashboard_recipe_edit', args=(id,)))
+    
+    return render(request,'authors/pages/dashboard_recipe.html', context)

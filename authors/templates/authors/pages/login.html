@@ -1,9 +1,9 @@
 {% extends 'global/base.html' %}
 {% block title %}Login | {% endblock title %}
 {% block content %}
-  <div class="main-content center container">
+  <div class="main-content center container top">
     <h2>Login</h2>
-    {% if request.user.is_authenticated %}
+    {% if user.is_authenticated %}
       <br>
     <div>
       Your are logged in with {{ request.user.first_name }}. Please, 
@@ -17,8 +17,10 @@
   </div>
 
   {% include 'global/partials/messages.html' %}
-  <form method="post">
-    {% include 'global/partials/form.html' %}
-  </form>
+  {% if not request.user.is_authenticated %}
+    <form method="post">
+      {% include 'global/partials/form.html' %}
+    </form>
+  {% endif %}
 
 {% endblock content %}

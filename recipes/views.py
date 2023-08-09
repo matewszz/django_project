@@ -3,7 +3,8 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import get_list_or_404, get_object_or_404, render
 from recipes.models import Recipe
 from django.core.paginator import Paginator
-import os
+from recipes.forms import RegisterRecipeForm
+from django.contrib.auth.decorators import login_required # somente usuarios logados possa acessar a view
 
 
 PER_PAGE = 3 # Variavel de produção, quando alterado o valor no .env é realizado a alteração por aqui 
@@ -64,4 +65,23 @@ def search(request):
         'page_title': f'Search for "{search_term}" |',
         'search_term': search_term,
         'recipes': recipes,
+    })
+
+
+@login_required(login_url='authors:login')
+def register_recipe(request): 
+    form = RegisterRecipeForm()
+
+    return render(request, 'recipes/pages/new_recipe.html', {
+        'form': form,
+    })
+
+@login_required(login_url='authors:login')
+def new_recipe(request):
+
+    form = RegisterRecipeForm()
+    
+
+    return render(request, 'recipes/pages/new_recipe.html', {
+        'form': form,
     })

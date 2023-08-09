@@ -5,6 +5,4 @@
 
 # flake8: noqa # -- comando para o flake8 não fazer analise desse arquivo.
 
-from .register_form import RegisterForm
-from .login import LoginForm
-from .recipe_forms import AuthorRecipeForm
+from .RegisterRecipe import RegisterRecipeForm

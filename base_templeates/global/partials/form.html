@@ -1,19 +1,29 @@
-{% csrf_token %}
-<div class="form-content form-content-grid">
-  {% for field in form %}
-    <div class="form-group">
-      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-      {{field}}
-      {% if field.help_text %}
-        <p class="help-text">{{ field.help_text }}</p>
-      {% endif %}
-      {{ field.errors }}
-    </div>
-  {% endfor %}
-</div>
+<form class="main-form" action="{{ form_action }}" method="POST" enctype="multipart/form-data"> {% comment %} sempre que tiver um forms para imputar arquivos deve  {% endcomment %}
+  {% csrf_token %}                                                                              {% comment %} ser passado o comando = enctype="multipart/form-data" {% endcomment %}
+  <div class="template-grid template_dashboard">
+    {% for field in form %}
+      <div class="form-group left {{ field.field.widget.attrs.class }}">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{field}}
+          {% if field.help_text %}
+            <p class="help-text">{{ field.help_text }}</p>
+          {% endif %}
+          {{ field.errors }}
+        </div>
 
-<div class="form-content form-content-grid">
-  <div class="form-group">
-    <button type="submit">Send</button>
+      {% if field.name == 'cover' and field.value.url %}
+        <div class="class span-2">
+          <img src="{{field.value.url}}" alt="Capa para {{recipe.title}}">
+        </div>
+      {% endif %}
+    
+    {% endfor %}
   </div>
-</div>
+
+
+  <div class="form-content form-content-grid">
+    <div class="form-group">
+      <button type="submit">Send</button>
+    </div>
+  </div>
+</form>
