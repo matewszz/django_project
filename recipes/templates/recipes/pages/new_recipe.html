@@ -1,18 +1,17 @@
 {% extends 'global/base.html' %}
 
-{% block title %}Register new Recipe | {% endblock title %}
+{% block title %}Dashboard Recipe | {% endblock title %}
 
 {% block content %}
   <div class="main-content center container top">
-
-    <h2>Registrar um nova receita {{recipe.title}}</h2>
+    <h2>Register Recipe</h2>
     <br>
     <h5>Para voltar para sua areá administrativa <a href="{% url 'authors:dashboard' %}"> clique aqui</a></h5>
     <br>
     {% include 'global/partials/messages.html' %}
 
-    {% for field in form %}
-      {{field}}
-    {% endfor %}
+    {% include 'global/partials/form.html' %}
+
+
 
   {% endblock content %}

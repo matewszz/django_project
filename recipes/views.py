@@ -5,10 +5,13 @@ from recipes.models import Recipe
 from django.core.paginator import Paginator
 from recipes.forms import RegisterRecipeForm
 from django.contrib.auth.decorators import login_required # somente usuarios logados possa acessar a view
+from django.contrib import messages
+from django.shortcuts import redirect, render
+from slug import slug
+from random import randint
 
-
-PER_PAGE = 3 # Variavel de produção, quando alterado o valor no .env é realizado a alteração por aqui 
-
+PER_PAGE = 9 # Variavel de produção, quando alterado o valor no .env é realizado a alteração por aqui 
+RANDOM = str(randint(0, 100))
 
 def home(request):
 
@@ -76,12 +79,30 @@ def register_recipe(request):
         'form': form,
     })
 
+
 @login_required(login_url='authors:login')
 def new_recipe(request):
+    form = RegisterRecipeForm( # esse tipo de form fica vinculado aos dados do model. então os dados aparecem para o user editar.
+        data=request.POST or None,
+        files=request.FILES or None, # deve sempre ter esse comando no form para indicar o tráfego de arquivos.
+    )
 
-    form = RegisterRecipeForm()
+    context = {'form': form}
+
     
+    if form.is_valid():
+        recipe = form.save(commit=False)
 
-    return render(request, 'recipes/pages/new_recipe.html', {
-        'form': form,
-    })
+        recipe.author = request.user
+        recipe.preparation_steps_is_html = False
+        recipe.is_published = False
+        title_recipe = form.cleaned_data['title']
+        recipe.slug = slug(title_recipe + RANDOM)
+            
+        recipe.save()
+
+        messages.success(request, 'Sua receita foi salva com sucesso!')
+        return redirect('authors:dashboard')
+    
+    else:
+        return render(request, 'recipes/pages/new_recipe.html', context)

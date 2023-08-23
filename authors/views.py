@@ -88,12 +88,13 @@ def dashboard_recipe_edit(request, id):
         id=id,
     )
 
+    if not recipe:
+        raise Http404()
+
     form = AuthorRecipeForm( # esse tipo de form fica vinculado aos dados do model. então os dados aparecem para o user editar.
         data=request.POST or None,
         files=request.FILES or None, # deve sempre ter esse comando no form para indicar o tráfego de arquivos.
         instance=recipe,
-
-
     )
 
     context = {
@@ -114,3 +115,18 @@ def dashboard_recipe_edit(request, id):
         return redirect(reverse('authors:dashboard_recipe_edit', args=(id,)))
     
     return render(request,'authors/pages/dashboard_recipe.html', context)
+
+@login_required(login_url='authors:login')
+def dashboard_recipe_delete(request, id):
+    recipe = Recipe.objects.get(
+        is_published=False,
+        author=request.user,
+        id=id,
+    )
+
+    if not recipe:
+        raise Http404()
+    
+    recipe.delete()
+    messages.success(request, 'Recipe deleted successfully!')
+    return redirect('authors:dashboard')
