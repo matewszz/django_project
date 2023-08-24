@@ -4,6 +4,7 @@ from turtle import update
 from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 
 class Category(models.Model):
@@ -35,3 +36,18 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            slug = f'{slugify(self.title)}'
+            self.slug = slug
+        
+        if Recipe.objects.filter(slug=self.slug).exists():
+            base_slug = self.slug
+            i = 1
+            while Recipe.objects.filter(slug=self.slug).exists():
+                self.slug = f"{base_slug}-{i}"
+                i += 1
+
+        super().save(*args, **kwargs)

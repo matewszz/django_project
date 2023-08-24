@@ -1,3 +1,4 @@
+import os
 from django.db.models import Q  # Esse import serve para melhorar o search com uma busca por algum atributo do arquivo
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_list_or_404, get_object_or_404, render
@@ -7,10 +8,9 @@ from recipes.forms import RegisterRecipeForm
 from django.contrib.auth.decorators import login_required # somente usuarios logados possa acessar a view
 from django.contrib import messages
 from django.shortcuts import redirect, render
-from slug import slug
 from random import randint
 
-PER_PAGE = 9 # Variavel de produção, quando alterado o valor no .env é realizado a alteração por aqui 
+PER_PAGE = os.environ.get('PER_PAGE', 6) # Variavel de produção, quando alterado o valor no .env é realizado a alteração por aqui 
 RANDOM = str(randint(0, 100))
 
 def home(request):
@@ -82,9 +82,9 @@ def register_recipe(request):
 
 @login_required(login_url='authors:login')
 def new_recipe(request):
-    form = RegisterRecipeForm( # esse tipo de form fica vinculado aos dados do model. então os dados aparecem para o user editar.
+    form = RegisterRecipeForm(
         data=request.POST or None,
-        files=request.FILES or None, # deve sempre ter esse comando no form para indicar o tráfego de arquivos.
+        files=request.FILES or None,
     )
 
     context = {'form': form}
@@ -96,8 +96,6 @@ def new_recipe(request):
         recipe.author = request.user
         recipe.preparation_steps_is_html = False
         recipe.is_published = False
-        title_recipe = form.cleaned_data['title']
-        recipe.slug = slug(title_recipe + RANDOM)
             
         recipe.save()
 
