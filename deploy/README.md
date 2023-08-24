@@ -125,7 +125,7 @@ Criando o repositório da aplicação
 mkdir -p ~/app_repo
 cd ~/app_repo
 git init
-git remote add origin ~/app_bare
+git remote add origin ~/main
 git add . && git commit -m 'Initial'
 cd ~
 ```
@@ -133,13 +133,17 @@ cd ~
 No seu computador local, adicione o bare como remoto:
 
 ```
-git remote add app_bare mateus@35.188.15.237:~/app_repo
-git push app_bare <branch>
+git remote add app_repo  mateus@35.188.15.237:~/app_repo
+git push app_repo main
+```
+
+➜ git remote -v                #Verificar as conexões remotas
+➜ git remote rm app_bare       #Se errar.
 ```
 
 No servidor, em app_repo, faça pull:
 
 ```
 cd ~/app_repo
-git pull origin <branch>
+git pull origin main
 ```
