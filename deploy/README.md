@@ -130,6 +130,11 @@ pip install -r requirements.txt
 pip install psycopg2
 pip install gunicorn
 ```
+```
+cp .env-example .env
+nano .env
+nano .env
+```
 
 ## Configurando o nginx
 
