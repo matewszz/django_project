@@ -1,21 +1,5 @@
 # Deploy
 
-Aqui estão os dados de referência para deploy de uma aplicação Django, de acordo
-com as aulas do meu curso de Django na Udemy.
-
-## Criando um servidor
-
-Como vamos usar um servidor na nuvem (cloud server), é interessante que você
-utilize algum serviço gratuito para isso. Recomendo a Google Cloud Platform.
-
-Caso não tenha como usar a Google Cloud Platform, um servidor em máquina virtual
-também funciona perfeitamente. Porém, não será possível disponibilizar a
-aplicação online na Internet. VirtualBox (Windows, Linux e macOS intel),
-Parallels (macOS M1), UTM (macOS M1), são alguns dos softwares mencionados
-indicados para isso.
-
-Siga as instruções da aula para criar um servidor na Google Cloud Platform.
-
 ### Chaves SSH
 
 Para criar chaves ssh no seu computador, utilize o comando ssh-keygen. Se você
@@ -96,18 +80,6 @@ git config --global user.email 'mferreira.nox@gmail.com'
 git config --global init.defaultBranch main
 ```
 
-## Criando o ambiente virtual
-
-```
-cd  ~/app_repo
-git pull origin <branch>
-python3.9 -m venv venv
-. venv/bin/activate
-pip install -r requirements.txt
-pip install psycopg2
-pip install gunicorn
-```
-
 ## Criando um repositório no servidor
 
 Um repositório bare é um repositório transitório (como se fosse um github).
@@ -126,25 +98,39 @@ mkdir -p ~/app_repo
 cd ~/app_repo
 git init
 git remote add origin ~/app_bare
-git add . 
-git commit -m 'Initial'
+git add . && git commit -m 'Initial'
 cd ~
 ```
 
 No seu computador local, adicione o bare como remoto:
 
 ```
-git remote add app_repo  mateus@35.188.15.237:~/app_repo
-git push app_repo main
-```
+git remote add app_bare cursodjangoserver:~/app_bare
+git push app_bare <branch>
 
 ➜ git remote -v                #Verificar as conexões remotas
 ➜ git remote rm app_bare       #Se errar.
+
 ```
 
 No servidor, em app_repo, faça pull:
 
 ```
 cd ~/app_repo
-git pull origin app_repo
+git pull origin main
 ```
+
+## Criando o ambiente virtual
+
+```
+python3.9 -m venv venv
+. venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+pip install psycopg2
+pip install gunicorn
+```
+
+## Configurando o nginx
+
+Use o arquivo e as explicações disponibilizadas na aula.
