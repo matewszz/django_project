@@ -145,5 +145,5 @@ No servidor, em app_repo, faça pull:
 
 ```
 cd ~/app_repo
-git pull origin main
+git pull origin app_repo
 ```
