@@ -138,4 +138,4 @@ nano .env
 
 ## Configurando o nginx
 
-Use o arquivo e as explicações disponibilizadas na aula.
+Use o arquivo e as explicações disponibilizadas na aula..
