@@ -125,8 +125,9 @@ Criando o repositório da aplicação
 mkdir -p ~/app_repo
 cd ~/app_repo
 git init
-git remote add origin ~/main
-git add . && git commit -m 'Initial'
+git remote add origin ~/app_bare
+git add . 
+git commit -m 'Initial'
 cd ~
 ```
 
