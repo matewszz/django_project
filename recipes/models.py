@@ -1,6 +1,5 @@
 from distutils.command.upload import upload
 from enum import unique
-from turtle import update
 from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
