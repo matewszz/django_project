@@ -127,8 +127,8 @@ python3.9 -m venv venv
 . venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
-pip install psycopg2
-pip install gunicorn
+pip install psycopg2  #conectar do postgress + python
+pip install gunicorn  #conector do django com ngix
 ```
 ```
 cp .env-example .env
