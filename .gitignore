@@ -97,3 +97,5 @@ dmypy.json
 
 # Sublime Text project files
 *.sublime-workspace
+db.sqlite32
+db.sqlite3

@@ -13,10 +13,6 @@
 
     {% for recipe in page.object_list %}
         {% include 'recipes/partials/recipe.html' %}
-
-    {% empty %}
-        {% include 'recipes/partials/404.html' %}
-
     {% endfor %}
 
 </div>
