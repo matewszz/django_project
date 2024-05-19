@@ -17,11 +17,15 @@ def home(request):
 
     recipes = Recipe.objects.filter(is_published=True).order_by('-id')
 
-    usuario_paginator = Paginator(recipes, PER_PAGE)   # Variavel dos obj e a quantidade dessa variavel
-    page_num = request.GET.get('page')          # verifica quais posts deve mostrar na página determinada
-    page = usuario_paginator.get_page(page_num) # Django está se situando em qual página da paginação ele está
+    usuario_paginator = Paginator(recipes, PER_PAGE)
+    page_num = request.GET.get('page')
+    page_obj = usuario_paginator.get_page(page_num)
 
-    return render(request, 'recipes/pages/home.html', {'page': page})
+    context = {}
+    context['page'] = page_obj
+    context['recipes'] = recipes
+
+    return render(request, 'recipes/pages/home.html', context=context) # {'page': page}
 
 
 def category(request, category_id):
