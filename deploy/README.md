@@ -349,3 +349,12 @@ server {
 	error_log   /var/log/nginx/temp.otaviomiranda.com.br-error.log;
 }
 ```
+
+## Atualizar tudo
+```
+sudo systemctl daemon-reload
+sudo systemctl restart gunicorn_blog.socket
+sudo systemctl restart gunicorn_blog.service
+sudo systemctl restart nginx
+
+```
